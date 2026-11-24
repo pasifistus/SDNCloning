@@ -6,7 +6,7 @@ from datetime import datetime
 
 URL = "http://127.0.0.1:8080/v1.0/topology/"
 # endpoints = ["switches", "links", "hosts"]
-endpoints = ["switches"]
+endpoints = ["switches", "links"]
 state_json = "topology.json"
 
 
@@ -18,6 +18,7 @@ else:
 
 state.setdefault("timestamp", None)
 state.setdefault("switches", {})
+state.setdefault("links", {})
 
 
 def get_switches(data):
@@ -36,6 +37,21 @@ def get_switches(data):
     # Replace the old switches so removed switches disappear too
     state["switches"] = switches
 
+def get_links(data):
+    links = {}
+    for link in data:
+        src = (link["src"]["dpid"], link["src"]["port_no"])
+        dst = (link["dst"]["dpid"], link["dst"]["port_no"])
+
+        a, b = sorted([src, dst])
+        key = f"{a[0]}:{a[1]}-{b[0]}:{b[1]}"
+
+        links[key] = {
+            "src": {"dpid": a[0], "port_no": a[1]},
+            "dst": {"dpid": b[0], "port_no": b[1]},
+        }
+
+    state["links"] = list(links.values())
 
 def save_state():
     state["timestamp"] = datetime.now().isoformat(timespec="seconds")
@@ -52,6 +68,8 @@ def get_info(endpoint):
     print(json.dumps(data, indent=4))
     if endpoint == "switches":
         get_switches(data)
+    if endpoint == "links":
+        get_links(data)
 
 
 while True:
