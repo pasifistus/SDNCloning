@@ -68,6 +68,17 @@ def get_links(data):
 
     state["links"] = links
 
+def get_hosts(data):
+    hosts = {}
+    for host in data:
+        hosts[host["mac"]] = {
+            "ipv4": host["ipv4"],
+            "ipv6": host["ipv6"],
+            "port": port_info(host["port"]),
+        }
+
+    state["hosts"] = hosts
+
 def save_state():
     state["timestamp"] = datetime.now().isoformat(timespec="seconds")
     with open(state_json, "w") as f:
@@ -85,6 +96,8 @@ def get_info(endpoint):
         get_switches(data)
     if endpoint == "links":
         get_links(data)
+    if endpoint == "hosts":
+        get_hosts(data)
 
 
 while True:
