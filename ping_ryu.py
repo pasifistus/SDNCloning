@@ -5,8 +5,7 @@ import os
 from datetime import datetime
 
 URL = "http://127.0.0.1:8080/v1.0/topology/"
-# endpoints = ["switches", "links", "hosts"]
-endpoints = ["switches", "links"]
+endpoints = ["switches", "links", "hosts"]
 state_json = "topology.json"
 
 
@@ -19,6 +18,7 @@ else:
 state.setdefault("timestamp", None)
 state.setdefault("switches", {})
 state.setdefault("links", {})
+state.setdefault("hosts", {})
 
 
 def get_switches(data):
@@ -37,21 +37,36 @@ def get_switches(data):
     # Replace the old switches so removed switches disappear too
     state["switches"] = switches
 
+def port_info(port):
+    return {
+        "dpid": port["dpid"],
+        "port_no": port["port_no"],
+        "hw_addr": port["hw_addr"],
+        "name": port["name"],
+    }
+
+
 def get_links(data):
-    links = {}
+    links = []
+    seen = []
+
     for link in data:
-        src = (link["src"]["dpid"], link["src"]["port_no"])
-        dst = (link["dst"]["dpid"], link["dst"]["port_no"])
+        src = link["src"]
+        dst = link["dst"]
 
-        a, b = sorted([src, dst])
-        key = f"{a[0]}:{a[1]}-{b[0]}:{b[1]}"
+        this_way = (src["dpid"], src["port_no"], dst["dpid"], dst["port_no"])
+        other_way = (dst["dpid"], dst["port_no"], src["dpid"], src["port_no"])
 
-        links[key] = {
-            "src": {"dpid": a[0], "port_no": a[1]},
-            "dst": {"dpid": b[0], "port_no": b[1]},
-        }
+        if other_way in seen:
+            continue
+        seen.append(this_way)
 
-    state["links"] = list(links.values())
+        links.append({
+            "src": port_info(src),
+            "dst": port_info(dst),
+        })
+
+    state["links"] = links
 
 def save_state():
     state["timestamp"] = datetime.now().isoformat(timespec="seconds")
