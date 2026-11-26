@@ -95,7 +95,7 @@ class ModularMininet(Mininet):
         return switch
 
     def _add_topology_switch(self, dpid):
-        name = f"s{int(dpid, 16)}"
+        name = f"ts{int(dpid, 16)}"
         if name in self.nameToNode:
             raise ValueError(f"Switch {name} already exists")
         switch = self.addSwitch(name, dpid=dpid)
@@ -111,8 +111,8 @@ class ModularMininet(Mininet):
             self._switch_for_dpid(dst["dpid"]),
             port1=int(src["port_no"], 16),
             port2=int(dst["port_no"], 16),
-            intfName1=src["name"],
-            intfName2=dst["name"],
+            intfName1=f"t{src['name']}",
+            intfName2=f"t{dst['name']}",
             addr1=src["hw_addr"],
             addr2=dst["hw_addr"]
         )
@@ -137,14 +137,14 @@ class ModularMininet(Mininet):
         if port in switch.intfs:
             raise ValueError(f"Port {port} on {switch.name} is already in use")
         index = len(self.hosts) + 1
-        while f"h{index}" in self.nameToNode:
+        while f"th{index}" in self.nameToNode:
             index += 1
-        name = f"h{index}"
+        name = f"th{index}"
         ipv4 = metadata["ipv4"]
         host = self.addHost(name, ip=ipv4[0] if ipv4 else None, mac=mac)
         self.mac_to_host[mac] = name
         self.addLink(host, switch, port1=0, port2=port,
-                     intfName2=metadata["port"]["name"], addr1=mac,
+                     intfName2=f"t{metadata['port']['name']}", addr1=mac,
                      addr2=metadata["port"]["hw_addr"])
         if self._running:
             host.configDefault()

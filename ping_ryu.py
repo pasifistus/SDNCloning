@@ -124,7 +124,7 @@ def get_info(endpoint):
         get_hosts(data)
 
 
-def fetch_state():
+def fetch_state() -> dict: 
     for endpoint in endpoints:
         try:
             get_info(endpoint)
@@ -135,6 +135,7 @@ def fetch_state():
     except Exception as e:
         print("Fetching flows: FAILED", e)
     save_state()
+    return state
 
 
 if __name__ == "__main__":

@@ -134,14 +134,16 @@ class TopologyChangesTest(unittest.TestCase):
         original = deepcopy(self.old)
         net = build(self.old)
         self.assertEqual(self.old, original)
-        self.assertEqual(net["s1"].intfs[10].name, "s1-eth10")
-        self.assertEqual(net["s2"].intfs[11].mac, self.old["links"][0]["dst"]["hw_addr"])
-        self.assertEqual(net["h1"].params["ip"], "10.0.0.1")
-        self.assertEqual(net["s1"].intfs[12].mac,
+        self.assertEqual(net["ts1"].intfs[10].name, "ts1-eth10")
+        self.assertEqual(net["ts2"].intfs[11].mac, self.old["links"][0]["dst"]["hw_addr"])
+        self.assertEqual(net["th1"].params["ip"], "10.0.0.1")
+        self.assertEqual(net["th1"].intfs[0].name, "th1-eth0")
+        self.assertEqual(net["ts1"].intfs[12].name, "ts1-eth12")
+        self.assertEqual(net["ts1"].intfs[12].mac,
                          self.old["hosts"]["02:00:00:01:00:01"]["port"]["hw_addr"])
-        self.assertIsNone(net["h2"].params["ip"])
-        net["s1"].attach.assert_not_called()
-        net["h1"].configDefault.assert_not_called()
+        self.assertIsNone(net["th2"].params["ip"])
+        net["ts1"].attach.assert_not_called()
+        net["th1"].configDefault.assert_not_called()
 
     def test_live_additions_start_switches_and_configure_hosts(self):
         net = build(self.old)
@@ -152,12 +154,12 @@ class TopologyChangesTest(unittest.TestCase):
         mac = "02:00:00:01:00:01"
         new["hosts"][mac] = host(4, 12, ["10.0.0.1"])
         self.assertTrue(net.modify(compare(self.old, new)))
-        switch = net["s4"]
+        switch = net["ts4"]
         switch.start.assert_called_once_with(net.controllers)
         self.assertEqual(switch.lifecycle.mock_calls[0], call.start(net.controllers))
         switch.attach.assert_any_call(switch.intfs[11])
         switch.attach.assert_any_call(switch.intfs[12])
-        switch.vsctl.assert_any_call("set", "Interface", "s4-eth11", "ofport_request=11")
+        switch.vsctl.assert_any_call("set", "Interface", "ts4-eth11", "ofport_request=11")
         net[net.mac_to_host[mac]].configDefault.assert_called_once_with()
         self.assertTrue(net._running)
         net.stop()
@@ -176,7 +178,7 @@ class TopologyChangesTest(unittest.TestCase):
         self.assertEqual(net.links, [second])
         first.delete.assert_called_once_with()
         second.delete.assert_not_called()
-        for switch in (net["s1"], net["s2"]):
+        for switch in (net["ts1"], net["ts2"]):
             switch.detach.assert_called_once()
 
         metadata = new["links"][0]
@@ -207,8 +209,8 @@ class TopologyChangesTest(unittest.TestCase):
         net.modify(changes)
         old_link.delete.assert_called_once_with()
         self.assertEqual(len(net.links), 1)
-        self.assertIs(net["s1"].intfs[10].link, net["s3"].intfs[12].link)
-        self.assertNotIn(11, net["s2"].intfs)
+        self.assertIs(net["ts1"].intfs[10].link, net["ts3"].intfs[12].link)
+        self.assertNotIn(11, net["ts2"].intfs)
 
     def test_reordering_and_nested_changes_are_ignored(self):
         self.old["links"] = [link(1, 10, 2, 11), link(1, 12, 3, 13)]
@@ -233,7 +235,7 @@ class TopologyChangesTest(unittest.TestCase):
         net = build(self.old)
         net.start()
         old_links = list(net.links)
-        removed_host, removed_switch = net["h1"], net["s2"]
+        removed_host, removed_switch = net["th1"], net["ts2"]
         new = deepcopy(self.old)
         new["links"] = []
         del new["hosts"][removed_mac]
@@ -243,8 +245,8 @@ class TopologyChangesTest(unittest.TestCase):
         net.modify(changes)
         self.assertNotIn(dpid(2), net.switch_obj_dpid)
         self.assertNotIn(removed_mac, net.mac_to_host)
-        self.assertNotIn("s2", net.nameToNode)
-        self.assertNotIn("h1", net.nameToNode)
+        self.assertNotIn("ts2", net.nameToNode)
+        self.assertNotIn("th1", net.nameToNode)
         self.assertEqual(net[net.mac_to_host[kept_mac]].intfs, {})
         self.assertEqual(net.links, [])
         for old_link in old_links:
@@ -252,9 +254,17 @@ class TopologyChangesTest(unittest.TestCase):
         removed_host.stop.assert_called_once_with(deleteIntfs=True)
         removed_switch.stop.assert_called_once_with(deleteIntfs=True)
 
-    def test_sample_json_switch_change(self):
-        old = json.loads((ROOT / "topology.json").read_text())
-        new = json.loads((ROOT / "topologyMOD.json").read_text())
+    def test_switch_removal_preserves_other_host_links(self):
+        old = self.old
+        old["links"] = [link(3, 2, 2, 3), link(1, 2, 2, 2)]
+        old["hosts"] = {
+            "02:00:00:01:00:01": host(3, 1),
+            "02:00:00:01:00:02": host(2, 1),
+            "02:00:00:01:00:03": host(1, 1),
+        }
+        new = deepcopy(old)
+        del new["switches"][dpid(2)]
+        new["switches"][dpid(4)] = {"ports": []}
         net = build(old)
         net.modify(compare(old, new))
         self.assertEqual(set(net.switch_obj_dpid), set(new["switches"]))
@@ -284,8 +294,8 @@ class TopologyChangesTest(unittest.TestCase):
         self.assertTrue(net.deleteSwitch(dpid(2)))
         self.assertFalse(net.deleteSwitch(dpid(2)))
         net.modify({"dictionary_item_added": {f"root['switches']['{dpid(2)}']": {"ports": []}}})
-        self.assertEqual(net.switch_obj_dpid[dpid(2)], "s2")
-        net["s2"].start.assert_called_once_with(net.controllers)
+        self.assertEqual(net.switch_obj_dpid[dpid(2)], "ts2")
+        net["ts2"].start.assert_called_once_with(net.controllers)
 
 
 if __name__ == "__main__":
