@@ -1,31 +1,22 @@
 {
-    "timestamp": "2026-11-24T13:09:03",
+    "timestamp": "2026-11-26T15:28:47",
     "switches": {
         "0000000000000001": {
             "ports": [
                 {
                     "port_no": "00000001",
                     "name": "s1-eth1",
-                    "hw_addr": "ce:a2:06:6b:24:21"
+                    "hw_addr": "ea:f5:e1:b0:16:7f"
                 },
                 {
                     "port_no": "00000002",
                     "name": "s1-eth2",
-                    "hw_addr": "c2:bb:aa:82:50:a4"
-                }
-            ]
-        },
-        "0000000000000003": {
-            "ports": [
-                {
-                    "port_no": "00000001",
-                    "name": "s3-eth1",
-                    "hw_addr": "4e:bf:96:10:e0:a3"
+                    "hw_addr": "36:80:e2:cc:6d:20"
                 },
                 {
-                    "port_no": "00000002",
-                    "name": "s3-eth2",
-                    "hw_addr": "d2:28:4f:3d:3b:a3"
+                    "port_no": "00000003",
+                    "name": "s1-eth3",
+                    "hw_addr": "a2:b2:7b:e9:2e:67"
                 }
             ]
         },
@@ -34,17 +25,55 @@
                 {
                     "port_no": "00000001",
                     "name": "s2-eth1",
-                    "hw_addr": "ce:8d:98:3e:e5:15"
+                    "hw_addr": "6e:b2:32:f7:a4:ea"
                 },
                 {
                     "port_no": "00000002",
                     "name": "s2-eth2",
-                    "hw_addr": "06:d7:b9:75:ed:5f"
+                    "hw_addr": "2a:1c:f5:a0:fa:af"
                 },
                 {
                     "port_no": "00000003",
                     "name": "s2-eth3",
-                    "hw_addr": "1e:12:39:20:ed:5d"
+                    "hw_addr": "c2:7e:ac:38:62:5a"
+                }
+            ]
+        },
+        "0000000000000003": {
+            "ports": [
+                {
+                    "port_no": "00000001",
+                    "name": "s3-eth1",
+                    "hw_addr": "26:79:db:77:08:c6"
+                },
+                {
+                    "port_no": "00000002",
+                    "name": "s3-eth2",
+                    "hw_addr": "42:b7:00:97:dd:cc"
+                },
+                {
+                    "port_no": "00000003",
+                    "name": "s3-eth3",
+                    "hw_addr": "da:72:3b:10:d6:9b"
+                }
+            ]
+        },
+        "0000000000000004": {
+            "ports": [
+                {
+                    "port_no": "00000001",
+                    "name": "s4-eth1",
+                    "hw_addr": "76:be:45:bb:dd:62"
+                },
+                {
+                    "port_no": "00000002",
+                    "name": "s4-eth2",
+                    "hw_addr": "7e:24:4d:04:fa:3f"
+                },
+                {
+                    "port_no": "00000003",
+                    "name": "s4-eth3",
+                    "hw_addr": "7e:cc:fc:7b:20:b1"
                 }
             ]
         }
@@ -52,77 +81,1331 @@
     "links": [
         {
             "src": {
-                "dpid": "0000000000000003",
-                "port_no": "00000002",
-                "hw_addr": "d2:28:4f:3d:3b:a3",
-                "name": "s3-eth2"
+                "dpid": "0000000000000002",
+                "port_no": "00000001",
+                "hw_addr": "6e:b2:32:f7:a4:ea",
+                "name": "s2-eth1"
             },
             "dst": {
-                "dpid": "0000000000000002",
-                "port_no": "00000003",
-                "hw_addr": "1e:12:39:20:ed:5d",
-                "name": "s2-eth3"
+                "dpid": "0000000000000001",
+                "port_no": "00000001",
+                "hw_addr": "ea:f5:e1:b0:16:7f",
+                "name": "s1-eth1"
             }
         },
         {
             "src": {
-                "dpid": "0000000000000001",
-                "port_no": "00000002",
-                "hw_addr": "c2:bb:aa:82:50:a4",
-                "name": "s1-eth2"
+                "dpid": "0000000000000003",
+                "port_no": "00000001",
+                "hw_addr": "26:79:db:77:08:c6",
+                "name": "s3-eth1"
             },
             "dst": {
-                "dpid": "0000000000000002",
+                "dpid": "0000000000000001",
                 "port_no": "00000002",
-                "hw_addr": "06:d7:b9:75:ed:5f",
-                "name": "s2-eth2"
+                "hw_addr": "36:80:e2:cc:6d:20",
+                "name": "s1-eth2"
+            }
+        },
+        {
+            "src": {
+                "dpid": "0000000000000004",
+                "port_no": "00000001",
+                "hw_addr": "76:be:45:bb:dd:62",
+                "name": "s4-eth1"
+            },
+            "dst": {
+                "dpid": "0000000000000001",
+                "port_no": "00000003",
+                "hw_addr": "a2:b2:7b:e9:2e:67",
+                "name": "s1-eth3"
             }
         }
     ],
     "hosts": {
-        "96:e9:23:9b:5e:82": {
+        "4e:fc:35:74:8f:c6": {
             "ipv4": [
-                "10.0.0.3"
+                "10.0.0.1"
             ],
             "ipv6": [
                 "::",
-                "fe80::94e9:23ff:fe9b:5e82"
+                "fe80::4cfc:35ff:fe74:8fc6"
             ],
             "port": {
-                "dpid": "0000000000000003",
-                "port_no": "00000001",
-                "hw_addr": "4e:bf:96:10:e0:a3",
-                "name": "s3-eth1"
+                "dpid": "0000000000000002",
+                "port_no": "00000002",
+                "hw_addr": "2a:1c:f5:a0:fa:af",
+                "name": "s2-eth2"
             }
         },
-        "92:5b:a1:f1:d2:01": {
+        "e6:90:0f:20:92:29": {
             "ipv4": [
                 "10.0.0.2"
             ],
             "ipv6": [
                 "::",
-                "fe80::905b:a1ff:fef1:d201"
+                "fe80::e490:fff:fe20:9229"
             ],
             "port": {
                 "dpid": "0000000000000002",
-                "port_no": "00000001",
-                "hw_addr": "ce:8d:98:3e:e5:15",
-                "name": "s2-eth1"
+                "port_no": "00000003",
+                "hw_addr": "c2:7e:ac:38:62:5a",
+                "name": "s2-eth3"
             }
         },
-        "ee:78:75:8f:64:8b": {
+        "32:05:86:76:fd:fc": {
             "ipv4": [
-                "10.0.0.1"
+                "10.0.0.4"
             ],
             "ipv6": [
-                "fe80::ec78:75ff:fe8f:648b"
+                "::",
+                "fe80::3005:86ff:fe76:fdfc"
             ],
             "port": {
-                "dpid": "0000000000000001",
-                "port_no": "00000001",
-                "hw_addr": "ce:a2:06:6b:24:21",
-                "name": "s1-eth1"
+                "dpid": "0000000000000003",
+                "port_no": "00000003",
+                "hw_addr": "da:72:3b:10:d6:9b",
+                "name": "s3-eth3"
+            }
+        },
+        "6a:90:cf:cc:22:ed": {
+            "ipv4": [
+                "10.0.0.6"
+            ],
+            "ipv6": [
+                "::",
+                "fe80::6890:cfff:fecc:22ed"
+            ],
+            "port": {
+                "dpid": "0000000000000004",
+                "port_no": "00000003",
+                "hw_addr": "7e:cc:fc:7b:20:b1",
+                "name": "s4-eth3"
+            }
+        },
+        "ae:fc:3a:a8:e3:a2": {
+            "ipv4": [
+                "10.0.0.3"
+            ],
+            "ipv6": [
+                "::",
+                "fe80::acfc:3aff:fea8:e3a2"
+            ],
+            "port": {
+                "dpid": "0000000000000003",
+                "port_no": "00000002",
+                "hw_addr": "42:b7:00:97:dd:cc",
+                "name": "s3-eth2"
+            }
+        },
+        "12:9f:d9:07:49:c1": {
+            "ipv4": [
+                "10.0.0.5"
+            ],
+            "ipv6": [
+                "::",
+                "fe80::109f:d9ff:fe07:49c1"
+            ],
+            "port": {
+                "dpid": "0000000000000004",
+                "port_no": "00000002",
+                "hw_addr": "7e:24:4d:04:fa:3f",
+                "name": "s4-eth2"
             }
         }
+    },
+    "flows": {
+        "0000000000000001": [
+            {
+                "table_id": 0,
+                "priority": 65535,
+                "match": {
+                    "dl_dst": "01:80:c2:00:00:0e",
+                    "dl_type": 35020
+                },
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 0,
+                "match": {},
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            }
+        ],
+        "0000000000000002": [
+            {
+                "table_id": 0,
+                "priority": 65535,
+                "match": {
+                    "dl_dst": "01:80:c2:00:00:0e",
+                    "dl_type": 35020
+                },
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 0,
+                "match": {},
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            }
+        ],
+        "0000000000000003": [
+            {
+                "table_id": 0,
+                "priority": 65535,
+                "match": {
+                    "dl_dst": "01:80:c2:00:00:0e",
+                    "dl_type": 35020
+                },
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 0,
+                "match": {},
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            }
+        ],
+        "0000000000000004": [
+            {
+                "table_id": 0,
+                "priority": 65535,
+                "match": {
+                    "dl_dst": "01:80:c2:00:00:0e",
+                    "dl_type": 35020
+                },
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "4e:fc:35:74:8f:c6"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "4e:fc:35:74:8f:c6",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "e6:90:0f:20:92:29"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "e6:90:0f:20:92:29",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "ae:fc:3a:a8:e3:a2"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "ae:fc:3a:a8:e3:a2",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "32:05:86:76:fd:fc"
+                },
+                "actions": [
+                    "OUTPUT:1"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 1,
+                    "dl_src": "32:05:86:76:fd:fc",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 3,
+                    "dl_src": "6a:90:cf:cc:22:ed",
+                    "dl_dst": "12:9f:d9:07:49:c1"
+                },
+                "actions": [
+                    "OUTPUT:2"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 1,
+                "match": {
+                    "in_port": 2,
+                    "dl_src": "12:9f:d9:07:49:c1",
+                    "dl_dst": "6a:90:cf:cc:22:ed"
+                },
+                "actions": [
+                    "OUTPUT:3"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            },
+            {
+                "table_id": 0,
+                "priority": 0,
+                "match": {},
+                "actions": [
+                    "OUTPUT:CONTROLLER"
+                ],
+                "idle_timeout": 0,
+                "hard_timeout": 0
+            }
+        ]
     }
 }

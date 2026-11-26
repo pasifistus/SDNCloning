@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 
 URL = "http://127.0.0.1:8080/v1.0/topology/"
+FLOW_URL = "http://127.0.0.1:8080/stats/flow/"
 endpoints = ["switches", "links", "hosts"]
 state_json = "topology.json"
 
@@ -17,8 +18,9 @@ else:
 
 state.setdefault("timestamp", None)
 state.setdefault("switches", {})
-state.setdefault("links", {})
+state.setdefault("links", [])
 state.setdefault("hosts", {})
+state.setdefault("flows", {})
 
 
 def get_switches(data):
@@ -34,7 +36,6 @@ def get_switches(data):
                 for port in switch["ports"]
             ]
         }
-    # Replace the old switches so removed switches disappear too
     state["switches"] = switches
 
 def port_info(port):
@@ -79,6 +80,28 @@ def get_hosts(data):
 
     state["hosts"] = hosts
 
+
+def get_flows():
+    flows = {}
+    for dpid in state["switches"]:
+        dpid_int = int(dpid, 16)
+        result = subprocess.run(
+            ["curl", "-s", f"{FLOW_URL}{dpid_int}"], capture_output=True, text=True)
+        data = json.loads(result.stdout)
+        flows[dpid] = [
+            {
+                "table_id": flow["table_id"],
+                "priority": flow["priority"],
+                "match": flow["match"],
+                "actions": flow["actions"],
+                "idle_timeout": flow["idle_timeout"],
+                "hard_timeout": flow["hard_timeout"],
+            }
+            for flow in data[str(dpid_int)]
+        ]
+    state["flows"] = flows
+
+
 def save_state():
     state["timestamp"] = datetime.now().isoformat(timespec="seconds")
     with open(state_json, "w") as f:
@@ -87,8 +110,9 @@ def save_state():
 
 
 def get_info(endpoint):
+    url = f"{URL}{endpoint}"
     result = subprocess.run(
-        ["curl", "-s", f"{URL}{endpoint}"], capture_output=True, text=True)
+        ["curl", "-s", url], capture_output=True, text=True)
     data = json.loads(result.stdout)
     print(f"--- {endpoint} ---")
     print(json.dumps(data, indent=4))
@@ -100,14 +124,22 @@ def get_info(endpoint):
         get_hosts(data)
 
 
-while True:
+def fetch_state():
     for endpoint in endpoints:
         try:
             get_info(endpoint)
         except Exception as e:
             print("Pinged Ryu controller: FAILED", e)
+    try:
+        get_flows()
+    except Exception as e:
+        print("Fetching flows: FAILED", e)
     save_state()
-    time.sleep(60)
 
+
+if __name__ == "__main__":
+    while True:
+        fetch_state()
+        time.sleep(60)
 
 ## to run python3 ping_ryu.py
